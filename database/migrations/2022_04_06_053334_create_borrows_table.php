@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('borrows', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('staff_id');
-            $table->string('phone_number');
-            $table->string('username')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->foreignId('book_id')->constrained();
+            $table->foreignId('borrower_id')->constrained();
+            $table->date('issue_date');
+            $table->date('due_date');
+            $table->date('return_date')->nullable();
+            $table->enum('late_return_status',['Yes','No'])->default('No');
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('borrows');
     }
 };

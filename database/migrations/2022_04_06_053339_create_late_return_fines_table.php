@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('late_return_fines', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('staff_id');
-            $table->string('phone_number');
-            $table->string('username')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->foreignId('borrow_id')->constrained();
+            $table->decimal('fine_amount', 8, 2);
+            $table->date('payment_date')->nullable();
+            $table->enum('payment',['Yes','No'])->default('No');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('late_return_fines');
     }
 };
