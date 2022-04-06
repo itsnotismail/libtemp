@@ -15,4 +15,8 @@ class LateReturnFine extends Model
         'payment_date',
         'payment',
     ];
+
+    public function borrow(){
+        return $this->belongsTo(Borrow::class);
+    }
 }

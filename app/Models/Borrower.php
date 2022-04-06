@@ -15,4 +15,8 @@ class Borrower extends Model
         'phone_number',
         'address',
     ];
+
+    public function borrows(){
+        return $this->hasMany(Borrow::class);
+    }
 }

@@ -17,4 +17,13 @@ class Borrow extends Model
         'return_date',
         'late_return_status',
     ];
+
+    public function book(){
+        return $this->belongsTo(Book::class);
+    }
+
+    public function borrower(){
+        return $this->belongsTo(Borrower::class);
+    }
+
 }
