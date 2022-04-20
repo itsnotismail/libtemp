@@ -16,7 +16,7 @@ class Borrow extends Model
         'issue_date',
         'due_date',
         'return_date',
-        'late_return_status', // NONE, PENDING, PAID
+        'late_return_status', // NO, PAID
     ];
 
     protected $appends = ['pending_payment', 'suggested_fine_amount'];
@@ -34,7 +34,7 @@ class Borrow extends Model
     }
 
     public function getPendingPaymentAttribute(){
-        return now()->gte(Carbon::parse($this->due_date)) && $this->late_return_status != 'PAID';
+        return now()->gt(Carbon::parse($this->due_date)) && $this->late_return_status != 'PAID';
     }
 
     public function getSuggestedFineAmountAttribute(){
