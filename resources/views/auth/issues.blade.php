@@ -2,6 +2,6 @@
 
 @section('content')
 
-<h1>Borrows Page</h1>
+<h1>Book Issue Page</h1>
 
 @endsection

@@ -17,7 +17,7 @@ class BorrowController extends Controller
         $data = Borrow::with('book','borrower')->orderBy('created_at','desc')->get();
         $books = Book::all();
         $borrowers = Borrower::all();
-        return view('auth.borrows', compact('data','books','borrowers'));
+        return view('auth.issues', compact('data','books','borrowers'));
     }
 
     public function create(Request $request){

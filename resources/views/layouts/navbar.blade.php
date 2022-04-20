@@ -10,9 +10,9 @@
                 <li class="nav-item"><a class="nav-link{{Request::is('home') ? ' active' : ''}}" href="{{URL::to('/home')}}">Home</a></li>
                 <li class="nav-item"><a class="nav-link{{Request::is('books') ? ' active' : ''}}" href="{{URL::to('/books')}}">Books</a></li>
                 <li class="nav-item"><a class="nav-link{{Request::is('borrowers') ? ' active' : ''}}" href="{{URL::to('/borrowers')}}">Borrowers</a></li>
-                <li class="nav-item"><a class="nav-link{{Request::is('borrows') ? ' active' : ''}}" href="{{URL::to('/borrows')}}">Borrows</a></li>
-                <li class="nav-item"><a class="nav-link{{Request::is('bookReturns') ? ' active' : ''}}" href="{{URL::to('/bookReturns')}}">Book Returns</a></li>
-                <li class="nav-item"><a class="nav-link{{Request::is('lateReturns') ? ' active' : ''}}" href="{{URL::to('/lateReturns')}}">Late Returns</a></li>
+                <li class="nav-item"><a class="nav-link{{Request::is('borrows') ? ' active' : ''}}" href="{{URL::to('/borrows')}}">Issues</a></li>
+                <li class="nav-item"><a class="nav-link{{Request::is('bookReturns') ? ' active' : ''}}" href="{{URL::to('/bookReturns')}}">Returns</a></li>
+                <li class="nav-item"><a class="nav-link{{Request::is('lateReturns') ? ' active' : ''}}" href="{{URL::to('/lateReturns')}}">Late Fines</a></li>
                 <li class="nav-item"><a class="nav-link{{Request::is('users') ? ' active' : ''}}" href="{{URL::to('/users')}}">Users</a></li>
                 @endauth
             </ul>
