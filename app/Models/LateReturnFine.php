@@ -12,8 +12,8 @@ class LateReturnFine extends Model
     protected $fillable = [
         'borrow_id',
         'fine_amount',
+        'payment_type',
         'payment_date',
-        'payment',
     ];
 
     public function borrow(){

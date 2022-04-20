@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Borrow extends Model
 {
@@ -15,8 +16,10 @@ class Borrow extends Model
         'issue_date',
         'due_date',
         'return_date',
-        'late_return_status',
+        'late_return_status', // NONE, PENDING, PAID
     ];
+
+    protected $appends = ['pending_payment', 'suggested_fine_amount'];
 
     public function book(){
         return $this->belongsTo(Book::class);
@@ -24,6 +27,18 @@ class Borrow extends Model
 
     public function borrower(){
         return $this->belongsTo(Borrower::class);
+    }
+
+    public function lateReturnFine(){
+        return $this->hasOne(LateReturnFine::class);
+    }
+
+    public function getPendingPaymentAttribute(){
+        return now()->gte(Carbon::parse($this->due_date)) && $this->late_return_status != 'PAID';
+    }
+
+    public function getSuggestedFineAmountAttribute(){
+        return now()->diffInDays(Carbon::parse($this->due_date)) * 20;
     }
 
 }

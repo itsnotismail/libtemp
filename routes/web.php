@@ -56,16 +56,16 @@ Route::prefix('/borrows')->group(function () {
 
 Route::prefix('/bookReturns')->group(function () {
     Route::get('/', [BookReturnController::class, 'index'])->name('bookReturns');
-    Route::post('/create', [BookReturnController::class, 'create']);
+    // Route::post('/create', [BookReturnController::class, 'create']);
     Route::post('/update', [BookReturnController::class, 'update']);
-    Route::post('/delete', [BookReturnController::class, 'delete']);
+    // Route::post('/delete', [BookReturnController::class, 'delete']);
 });
 
 Route::prefix('lateReturns')->group(function () {
     Route::get('/', [LateReturnController::class, 'index'])->name('lateReturns');
-    Route::post('/create', [LateReturnController::class, 'create']);
+    // Route::post('/create', [LateReturnController::class, 'create']);
     Route::post('/update', [LateReturnController::class, 'update']);
-    Route::post('/delete', [LateReturnController::class, 'delete']);
+    // Route::post('/delete', [LateReturnController::class, 'delete']);
 });
 
 Route::prefix('users')->group(function () {
