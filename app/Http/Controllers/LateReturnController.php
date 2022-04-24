@@ -27,7 +27,9 @@ class LateReturnController extends Controller
         if(! $data){
             return response()->json(['error' => 'Entry Not Found']);
         }
-        if(now()->lte(Carbon::parse($data->due_date))){
+        if($data->return_date){
+            return response()->json(['error' => 'Book already returned']);
+        } else if(now()->lte(Carbon::parse($data->due_date))){
             return response()->json(['error' => 'Book is not overdue']);
         } elseif($data->late_return_status == 'PAID'){
             return response()->json(['error' => 'Late Return already paid']);

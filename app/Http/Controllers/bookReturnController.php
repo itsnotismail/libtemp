@@ -25,7 +25,7 @@ class BookReturnController extends Controller
         if(! $data){
             return response()->json(['error' => 'Entry Not Found']);
         }
-        if($data->return_date == null){
+        if($data->return_date){
             return response()->json(['error' => 'Book already returned']);
         }
         if(now()->gt(Carbon::parse($data->due_date)) && $data->late_return_status != 'PAID'){

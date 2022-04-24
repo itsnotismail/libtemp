@@ -53,7 +53,7 @@
                     <input type="hidden" id="updateDataID" name="id"/>
                     <div class="row">
                         <div class="col"><label class="col-form-label d-table-row">Payment Type</label>
-                            <select class="form-select" aria-label="Default select example" id="updateType" name="Type">
+                            <select class="form-select" aria-label="Default select example" id="updateType" name="PaymentType">
                                 <option value="Cash">Cash</option>
                                 <option value="Card">Card</option>
                                 <option value="Transfer">Transfer</option>

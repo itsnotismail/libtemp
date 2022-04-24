@@ -8,7 +8,6 @@
             <h3>Book Return</h3>
         </div>
     </div>
-
     <div class="row" style="margin-top:15px;">
         <div class="col">
             <div class="table-responsive">
@@ -53,7 +52,7 @@ $('#tbl').DataTable();
 
 
     $(".btnDelete").click(function(){
-        var id = $(this).closest('tr').data('borrower');
+        var id = $(this).closest('tr').data('id');
         var data = new FormData();
         data.append('_token', $("meta[name='csrf-token']").attr('content'));
         data.append('id', id);

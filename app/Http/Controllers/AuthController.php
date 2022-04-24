@@ -21,14 +21,14 @@ class AuthController extends Controller
 
     public function store(Request $request){
         $vr = $request->validate([
-            'id' => 'required|integer',
+            // 'id' => 'required|integer',
             'Name' => 'required|string',
             'StaffID' => 'required|string',
             'PhoneNumber' => 'required|string',
             'Username' => 'required|string',
             'Password' => 'nullable|string|confirmed',
         ]);
-        $data = User::where('StaffID', $vr['StaffID'])->first();
+        $data = User::where('staff_id', $vr['StaffID'])->first();
         if($data){
             return response()->json(['error' => 'Staff Already Exists']);
         }
@@ -41,7 +41,7 @@ class AuthController extends Controller
         ]);
 
         if($status){
-            return response()->json(['success' => 'Entry Created']);
+            return redirect()->route('login');
         }
         return response()->json(['error' => 'Entry Failed']);
         
