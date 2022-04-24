@@ -19,13 +19,13 @@ class BookReturnController extends Controller
 
     public function update(Request $request){
         $vr = $request->validate([
-            'Borrow' => 'required|integer',
+            'id' => 'required|integer',
         ]);
-        $data = Borrow::find($vr['Borrow']);
+        $data = Borrow::find($vr['id']);
         if(! $data){
             return response()->json(['error' => 'Entry Not Found']);
         }
-        if($data->return_date){
+        if($data->return_date == null){
             return response()->json(['error' => 'Book already returned']);
         }
         if(now()->gt(Carbon::parse($data->due_date)) && $data->late_return_status != 'PAID'){

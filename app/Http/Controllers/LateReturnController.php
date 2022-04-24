@@ -20,10 +20,10 @@ class LateReturnController extends Controller
 
     public function update(Request $request){
         $vr = $request->validate([
-            'Borrow' => 'required|integer',
+            'id' => 'required|integer',
             'PaymentType' => 'required|string', // Cash, Card, Transfer
         ]);
-        $data = Borrow::find($vr['Borrow']);
+        $data = Borrow::find($vr['id']);
         if(! $data){
             return response()->json(['error' => 'Entry Not Found']);
         }

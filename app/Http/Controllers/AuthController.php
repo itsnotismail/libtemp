@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -18,8 +19,31 @@ class AuthController extends Controller
         return view('register');
     }
 
-    public function store(){
-        // Create User
+    public function store(Request $request){
+        $vr = $request->validate([
+            'id' => 'required|integer',
+            'Name' => 'required|string',
+            'StaffID' => 'required|string',
+            'PhoneNumber' => 'required|string',
+            'Username' => 'required|string',
+            'Password' => 'nullable|string|confirmed',
+        ]);
+        $data = User::where('StaffID', $vr['StaffID'])->first();
+        if($data){
+            return response()->json(['error' => 'Staff Already Exists']);
+        }
+        $status = User::create([
+            'name' => $vr['Name'],
+            'staff_id' => $vr['StaffID'],
+            'phone_number' => $vr['PhoneNumber'],
+            'username' => $vr['Username'],
+            'password' => @$vr['Password'] ? bcrypt($vr['Password']) : $data->password,
+        ]);
+
+        if($status){
+            return response()->json(['success' => 'Entry Created']);
+        }
+        return response()->json(['error' => 'Entry Failed']);
         
     }
     
